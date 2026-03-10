@@ -1,15 +1,8 @@
-import Link from 'next/link';
-
 export function Footer() {
     return (
-        <footer className="pt-16 pb-12 sm:pt-24 sm:pb-16">
-            <p className="text-sm">
-                <Link
-                    href="https://docs.netlify.com/frameworks/next-js/overview/"
-                    className="decoration-dashed text-primary underline-offset-8"
-                >
-                    Next.js on Netlify
-                </Link>
+        <footer className="pt-12 pb-8 sm:pt-16 sm:pb-10 border-t border-stone-200">
+            <p className="text-sm text-stone-400 text-center" dir="rtl">
+                کتاب خلاصہ — مشہور کتابوں کے خلاصے
             </p>
         </footer>
     );
