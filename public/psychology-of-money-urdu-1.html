@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Psychology of Money</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #FDF6E3;
+    --dark: #1A1208;
+    --dark2: #2C1F0A;
+    --ink: #3D2B0E;
+    --cream: #FAF3E0;
+    --shadow: rgba(201,168,76,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111009;
+    font-family: 'Noto Nastaliq Urdu', serif;
+    min-height: 100vh;
+    padding: 40px 20px;
+    direction: rtl;
+  }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .page-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 38px);
+    color: var(--gold-light);
+    letter-spacing: 3px;
+    direction: ltr;
+    text-transform: uppercase;
+  }
+
+  .page-title p {
+    color: #a07830;
+    font-size: 14px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    direction: ltr;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .divider-top {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px auto;
+  }
+
+  /* ===== POSTS GRID ===== */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ===== BASE CARD ===== */
+  .card {
+    border-radius: 18px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 60px rgba(0,0,0,0.55), 0 0 40px var(--shadow);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    border: 1px solid rgba(201,168,76,0.25);
+    pointer-events: none;
+  }
+
+  /* ===== CARD THEMES ===== */
+  .card-1 {
+    background: linear-gradient(145deg, #1C1407 0%, #2A1C07 60%, #1A1005 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    animation-delay: 0.1s;
+  }
+  .card-2 {
+    background: linear-gradient(145deg, #0D1C10 0%, #122416 60%, #0A180C 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    animation-delay: 0.2s;
+  }
+  .card-3 {
+    background: linear-gradient(145deg, #1A0C0C 0%, #261010 60%, #180A0A 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    animation-delay: 0.3s;
+  }
+  .card-4 {
+    background: linear-gradient(145deg, #0C0C1C 0%, #101024 60%, #0A0A18 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    animation-delay: 0.4s;
+  }
+  .card-5 {
+    background: linear-gradient(145deg, #1A1407 0%, #221A08 60%, #181205 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    animation-delay: 0.5s;
+  }
+  .card-6 {
+    background: linear-gradient(145deg, #0E1618 0%, #131E22 60%, #0C1416 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    animation-delay: 0.6s;
+  }
+  .card-7 {
+    background: linear-gradient(145deg, #180C18 0%, #211022 60%, #160A16 100%);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    animation-delay: 0.7s;
+  }
+
+  /* ===== CARD ACCENT COLORS ===== */
+  .card-1 .accent { color: #E8C97A; }
+  .card-2 .accent { color: #6FD98A; }
+  .card-3 .accent { color: #F08080; }
+  .card-4 .accent { color: #8AB4F8; }
+  .card-5 .accent { color: #F5C842; }
+  .card-6 .accent { color: #56CCF2; }
+  .card-7 .accent { color: #CE93D8; }
+
+  .card-1 .badge-bg { background: rgba(232,201,122,0.12); border-color: rgba(232,201,122,0.3); }
+  .card-2 .badge-bg { background: rgba(111,217,138,0.12); border-color: rgba(111,217,138,0.3); }
+  .card-3 .badge-bg { background: rgba(240,128,128,0.12); border-color: rgba(240,128,128,0.3); }
+  .card-4 .badge-bg { background: rgba(138,180,248,0.12); border-color: rgba(138,180,248,0.3); }
+  .card-5 .badge-bg { background: rgba(245,200,66,0.12); border-color: rgba(245,200,66,0.3); }
+  .card-6 .badge-bg { background: rgba(86,204,242,0.12); border-color: rgba(86,204,242,0.3); }
+  .card-7 .badge-bg { background: rgba(206,147,216,0.12); border-color: rgba(206,147,216,0.3); }
+
+  .card-1 .line-dec { background: linear-gradient(90deg, #E8C97A, transparent); }
+  .card-2 .line-dec { background: linear-gradient(90deg, #6FD98A, transparent); }
+  .card-3 .line-dec { background: linear-gradient(90deg, #F08080, transparent); }
+  .card-4 .line-dec { background: linear-gradient(90deg, #8AB4F8, transparent); }
+  .card-5 .line-dec { background: linear-gradient(90deg, #F5C842, transparent); }
+  .card-6 .line-dec { background: linear-gradient(90deg, #56CCF2, transparent); }
+  .card-7 .line-dec { background: linear-gradient(90deg, #CE93D8, transparent); }
+
+  .card-1 .quote-box { border-right-color: #E8C97A; background: rgba(232,201,122,0.07); }
+  .card-2 .quote-box { border-right-color: #6FD98A; background: rgba(111,217,138,0.07); }
+  .card-3 .quote-box { border-right-color: #F08080; background: rgba(240,128,128,0.07); }
+  .card-4 .quote-box { border-right-color: #8AB4F8; background: rgba(138,180,248,0.07); }
+  .card-5 .quote-box { border-right-color: #F5C842; background: rgba(245,200,66,0.07); }
+  .card-6 .quote-box { border-right-color: #56CCF2; background: rgba(86,204,242,0.07); }
+  .card-7 .quote-box { border-right-color: #CE93D8; background: rgba(206,147,216,0.07); }
+
+  /* ===== CARD ELEMENTS ===== */
+  .card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid;
+    border-radius: 50px;
+    padding: 5px 16px;
+    font-size: 12px;
+    margin-bottom: 18px;
+    direction: ltr;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+  }
+
+  .number-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.08;
+    position: absolute;
+    left: 24px;
+    top: 20px;
+    direction: ltr;
+    pointer-events: none;
+  }
+
+  .card-title {
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
+    color: #F5EDD8;
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+
+  .line-dec {
+    height: 2px;
+    width: 60px;
+    border-radius: 4px;
+    margin: 12px 0 20px auto;
+  }
+
+  .card-body {
+    font-size: clamp(14px, 2vw, 16px);
+    color: #C8B98A;
+    line-height: 2.2;
+    margin-bottom: 16px;
+  }
+
+  .card-body strong {
+    color: #F0DFA0;
+  }
+
+  .quote-box {
+    border-right: 3px solid;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    font-size: 15px;
+    color: #E0CFA0;
+    line-height: 2;
+    font-style: italic;
+  }
+
+  .highlight-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0;
+  }
+
+  .highlight-list li {
+    color: #C8B98A;
+    font-size: 15px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .highlight-list li .bullet {
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .steps-row {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .step-chip {
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 14px;
+    text-align: center;
+    flex: 1;
+    min-width: 90px;
+  }
+
+  .step-chip .step-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    display: block;
+    direction: ltr;
+    margin-bottom: 4px;
+  }
+
+  .step-chip .step-text {
+    font-size: 13px;
+    color: #F0DFA0;
+    display: block;
+    font-weight: 600;
+  }
+
+  .card-footer {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: ltr;
+  }
+
+  .book-tag {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #806040;
+    text-transform: uppercase;
+  }
+
+  .emoji-big {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  /* ===== DECORATIVE CORNER ===== */
+  .corner-deco {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 30px;
+    height: 30px;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px 0 0 0;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .posts-grid { grid-template-columns: 1fr; gap: 24px; }
+    .card { padding: 28px 22px; }
+    .steps-row { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-title">
+  <p>کتاب کا خلاصہ</p>
+  <div class="divider-top"></div>
+  <h1>The Psychology of Money</h1>
+  <div class="divider-top"></div>
+</div>
+
+<!-- POSTS GRID -->
+<div class="posts-grid">
+
+  <!-- POST 1 -->
+  <div class="card card-1">
+    <div class="number-big">1</div>
+    <div class="corner-deco"></div>
+    <div class="card-badge badge-bg accent">
+      <span>📖</span> سبق نمبر ۱
+    </div>
+    <h2 class="card-title">پیسہ اور نفسیات</h2>
+    <div class="line-dec"></div>
+    <p class="card-body">
+      پیسہ صرف ریاضی نہیں — یہ <strong>رویہ</strong> ہے۔<br>
+      سب سے بڑی غلطی یہ سوچنا ہے:
+    </p>
+    <div class="quote-box">
+      زیادہ پیسہ = زیادہ خوشی
+    </div>
+    <p class="card-body">
+      <strong>حقیقت یہ ہے:</strong><br>
+      جو شخص کم کماتا ہے لیکن <strong>بچاتا ہے</strong>،<br>
+      وہ اس سے زیادہ امیر ہے جو زیادہ کماتا ہے لیکن <strong>اڑاتا ہے۔</strong>
+    </p>
+    <div class="card-footer">
+      <span class="book-tag">Psychology of Money</span>
+      <span class="emoji-big">🧠</span>
+    </div>
+  </div>
+
+  <!-- POST 2 -->
+  <div class="card card-2">
+    <div class="number-big">2</div>
+    <div class="corner-deco"></div>
+    <div class="card-badge badge-bg accent">
+      <span>⏳</span> سبق نمبر ۲
+    </div>
+    <h2 class="card-title">وقت سب سے بڑی دولت ہے</h2>
+    <div class="line-dec"></div>
+    <p class="card-body">
+      <strong>Compound Interest</strong> کا جادو:
+    </p>
+    <div class="quote-box">
+      چھوٹی بچت + لمبا وقت = بہت بڑی دولت
+    </div>
+    <p class="card-body">
+      Warren Buffett کی <strong>95% دولت</strong> 60 سال کی عمر کے بعد بنی۔
+    </p>
+    <ul class="highlight-list">
+      <li><span class="bullet accent">✦</span> راز کیا تھا؟</li>
+      <li><span class="bullet accent">✦</span> <strong>صبر اور وقت</strong> — بس یہی دو چیزیں۔</li>
+    </ul>
+    <div class="card-footer">
+      <span class="book-tag">Psychology of Money</span>
+      <span class="emoji-big">⏰</span>
+    </div>
+  </div>
+
+  <!-- POST 3 -->
+  <div class="card card-3">
+    <div class="number-big">3</div>
+    <div class="corner-deco"></div>
+    <div class="card-badge badge-bg accent">
+      <span>🚗</span> سبق نمبر ۳
+    </div>
+    <h2 class="card-title">امیر دکھنا اور امیر ہونا</h2>
+    <div class="line-dec"></div>
+    <p class="card-body">
+      لوگ مہنگی گاڑی خریدتے ہیں تاکہ لوگ <strong>انہیں</strong> دیکھیں۔
+    </p>
+    <div class="quote-box">
+      لیکن لوگ گاڑی دیکھتے ہیں — آپ کو نہیں۔
+    </div>
+    <p class="card-body">
+      <strong>اصل امیر وہ ہے</strong> جس کے پاس:<br>
+      بینک میں پیسہ ہو — نہ کہ گلی میں گاڑی۔
+    </p>
+    <div class="card-footer">
+      <span class="book-tag">Psychology of Money</span>
+      <span class="emoji-big">💎</span>
+    </div>
+  </div>
+
+  <!-- POST 4 -->
+  <div class="card card-4">
+    <div class="number-big">4</div>
+    <div class="corner-deco"></div>
+    <div class="card-badge badge-bg accent">
+      <span>🗝️</span> سبق نمبر ۴
+    </div>
+    <h2 class="card-title">بچت کا اصل مقصد</h2>
+    <div class="line-dec"></div>
+    <p class="card-body">
+      بچت صرف چیزیں خریدنے کے لیے نہیں۔<br>
+      بچت کا اصل مطلب ہے — <strong>آزادی۔</strong>
+    </p>
+    <ul class="highlight-list">
+      <li><span class="bullet accent">✅</span> نوکری چھوڑ سکتے ہو</li>
+      <li><span class="bullet accent">✅</span> ناپسند کام سے انکار کر سکتے ہو</li>
+      <li><span class="bullet accent">✅</span> زندگی اپنی شرائط پر جی سکتے ہو</li>
+    </ul>
+    <p class="card-body">
+      جب آپ کے پاس بچت ہو تو <strong>زندگی آپ کے ہاتھ میں ہوتی ہے۔</strong>
+    </p>
+    <div class="card-footer">
+      <span class="book-tag">Psychology of Money</span>
+      <span class="emoji-big">🕊️</span>
+    </div>
+  </div>
+
+  <!-- POST 5 -->
+  <div class="card card-5">
+    <div class="number-big">5</div>
+    <div class="corner-deco"></div>
+    <div class="card-badge badge-bg accent">
+      <span>💰</span> سبق نمبر ۵
+    </div>
+    <h2 class="card-title">کامیابی کا اصل راز</h2>
+    <div class="line-dec"></div>
+    <p class="card-body">پیسہ بنانے کے تین مرحلے:</p>
+    <div class="steps-row">
+      <div class="step-chip" style="background:rgba(245,200,66,0.08); border:1px solid rgba(245,200,66,0.2);">
+        <span class="step-label">مرحلہ ۱</span>
+        <span class="step-text">Earning</span>
+        <span style="font-size:12px;color:#a09060;">پیسہ کمانا</span>
+      </div>
+      <div class="step-chip" style="background:rgba(245,200,66,0.08); border:1px solid rgba(245,200,66,0.2);">
+        <span class="step-label">مرحلہ ۲</span>
+        <span class="step-text">Saving</span>
+        <span style="font-size:12px;color:#a09060;">پیسہ بچانا</span>
+      </div>
+      <div class="step-chip" style="background:rgba(245,200,66,0.08); border:1px solid rgba(245,200,66,0.2);">
+        <span class="step-label">مرحلہ ۳</span>
+        <span class="step-text">Investing</span>
+        <span style="font-size:12px;color:#a09060;">بڑھانا</span>
+      </div>
+    </div>
+    <div class="quote-box">
+      زیادہ تر لوگ صرف پہلا مرحلہ کرتے ہیں۔<br>
+      <strong>کامیاب لوگ تینوں کرتے ہیں۔</strong>
+    </div>
+    <div class="card-footer">
+      <span class="book-tag">Psychology of Money</span>
+      <span class="emoji-big">🏆</span>
+    </div>
+  </div>
+
+  <!-- POST 6 -->
+  <div class="card card-6">
+    <div class="number-big">6</div>
+    <div class="corner-deco"></div>
+    <div class="card-badge badge-bg accent">
+      <span>⚠️</span> سبق نمبر ۶
+    </div>
+    <h2 class="card-title">غلطیاں معاف ہیں، تباہی نہیں</h2>
+    <div class="line-dec"></div>
+    <p class="card-body">
+      زندگی میں غلطیاں ہوں گی — لیکن ایک اصول یاد رکھو:
+    </p>
+    <div class="quote-box">
+      کوئی ایسی غلطی مت کرو<br>
+      جس سے <strong>واپسی ممکن نہ ہو۔</strong>
+    </div>
+    <p class="card-body">
+      سرمایہ کاری میں سب سے بڑا راز:<br>
+      <strong>زندہ رہو، کھیل میں رہو۔</strong>
+    </p>
+    <div class="card-footer">
+      <span class="book-tag">Psychology of Money</span>
+      <span class="emoji-big">🛡️</span>
+    </div>
+  </div>
+
+  <!-- POST 7 -->
+  <div class="card card-7">
+    <div class="number-big">7</div>
+    <div class="corner-deco"></div>
+    <div class="card-badge badge-bg accent">
+      <span>😊</span> سبق نمبر ۷
+    </div>
+    <h2 class="card-title">خوشی اور پیسہ</h2>
+    <div class="line-dec"></div>
+    <p class="card-body">
+      تحقیق کہتی ہے: <strong>ایک حد تک</strong> پیسہ خوشی دیتا ہے۔
+    </p>
+    <ul class="highlight-list">
+      <li><span class="bullet accent">✦</span> اس کے بعد؟</li>
+      <li><span class="bullet accent">✦</span> <strong>تعلقات</strong> زیادہ اہم ہیں</li>
+      <li><span class="bullet accent">✦</span> <strong>آزادی</strong> زیادہ اہم ہے</li>
+      <li><span class="bullet accent">✦</span> <strong>سکون</strong> زیادہ اہم ہے</li>
+    </ul>
+    <div class="quote-box">
+      پیسہ ذریعہ ہے — <strong>منزل نہیں۔</strong>
+    </div>
+    <div class="card-footer">
+      <span class="book-tag">Psychology of Money</span>
+      <span class="emoji-big">❤️</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
