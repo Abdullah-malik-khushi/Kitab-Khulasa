@@ -26,7 +26,28 @@ const initialBooks = [
     keyLessons: ["پیسے کے لیے کام مت کرو", "Asset خریدو، Liability سے بچو", "مالی تعلیم سب سے بڑی دولت ہے"],
     quote: "غریب اور متوسط طبقہ پیسے کے لیے کام کرتا ہے، امیر لوگوں کے لیے پیسہ کام کرتا ہے۔",
   },
-];
+  
+];{
+    id: 10,
+    title: "پیسے کی نفسیات",
+    titleEn: "The Psychology of Money",
+    author: "مورگن ہاؤسل",
+    year: "2020",
+    readTime: "12 منٹ",
+    rating: 4.8,
+    icon: "💰",
+    tagline: "پیسہ کمانا کافی نہیں — سوچ بدلنا ضروری ہے۔",
+    overview: "یہ کتاب بتاتی ہے کہ پیسے کے بارے میں ہمارا رویہ ہی ہماری دولت کا فیصلہ کرتا ہے۔",
+    blinks: [
+      { id: 1, icon: "🧠", title: "پیسہ اور نفسیات", content: "پیسہ صرف ریاضی نہیں — یہ رویہ ہے۔" },
+      { id: 2, icon: "⏳", title: "وقت کی طاقت", content: "چھوٹی بچت + لمبا وقت = بہت بڑی دولت۔" },
+      { id: 3, icon: "💎", title: "امیر دکھنا vs امیر ہونا", content: "بینک میں پیسہ ہو، نہ کہ گلی میں گاڑی۔" },
+      { id: 4, icon: "🕊️", title: "بچت کا مقصد", content: "بچت کا مطلب آزادی ہے۔" },
+      { id: 5, icon: "🏆", title: "کامیابی کا راز", content: "Earning، Saving اور Investing تینوں ضروری ہیں۔" },
+    ],
+    keyLessons: ["صبر سب سے بڑی دولت ہے", "بچت = آزادی", "وقت کو کام پر لگاؤ"],
+    quote: "پیسہ ذریعہ ہے، منزل نہیں۔",
+  },
 
 async function generateBookSummary(bookName, authorName) {
   const prompt = `آپ ایک ماہر کتاب خلاصہ نویس ہیں۔ نیچے دی گئی کتاب کا مکمل خلاصہ اردو زبان میں JSON format میں دیں۔\n\nکتاب: "${bookName}"\nمصنف: "${authorName}"\n\nصرف یہ JSON واپس کریں:\n{"titleUrdu":"اردو نام","authorUrdu":"مصنف اردو میں","year":"سال","readTime":"X منٹ","rating":4.5,"icon":"emoji","tagline":"مرکزی خیال","overview":"3-4 جملے","blinks":[{"id":1,"icon":"emoji","title":"عنوان","content":"تفصیل"}],"keyLessons":["سبق1","سبق2","سبق3"],"quote":"اقتباس"}`;
